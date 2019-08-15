@@ -5,9 +5,8 @@ public class commandStatus {
      * The common ancestor for all commands that records whether the last execution of the command was
      * successful, and if not, records the error message.
      */
-    public class CommandStatus {
         /** Specification of whether or not the command was successfully executed. */
-        protected boolean successful = false;
+        public boolean successful = false;
 
         /** If the command was not successful, an appropriate error message. */
         protected String errorMessage;
@@ -35,4 +34,3 @@ public class commandStatus {
         }
     }
 
-}
