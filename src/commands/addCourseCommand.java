@@ -7,7 +7,7 @@ public class addCourseCommand extends commandStatus{
      *
      * @param name: course name
      */
-    public void addCourse (String name){
+    public void addCourse (String name,int grade){
         if (courseSetAccess.dictionary().containsKey(name)) {
             successful=false;
             errorMessage =
@@ -15,6 +15,14 @@ public class addCourseCommand extends commandStatus{
         }
         else{
             Course course = null;
+            try {
+                course = new Course(name);
+                course.setGrade(grade);
+            } catch (RuntimeException e) {
+                successful = false;
+                errorMessage = e.getMessage();
+                return;
+            }
             Course sameNameCourse = courseSetAccess.dictionary().put(name, course);
             if (sameNameCourse != null) {
                 // put the original doctor back
