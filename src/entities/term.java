@@ -1,6 +1,5 @@
 package entities;
 
-import lib280.tree.AVLNode280;
 import lib280.tree.AVLTree280;
 
 public class term {
