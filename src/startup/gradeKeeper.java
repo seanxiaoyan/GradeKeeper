@@ -3,8 +3,8 @@ import userInterfaces.InputOutputInterface;
 import userInterfaces.ConsoleIO;
 import userInterfaces.DialogIO;
 import commands.addCourseCommand;
-import commands.createTermCommand;
 import commands.currentStateCommand;
+import containers.courseTree;
 public class gradeKeeper {
     /**
      * The interface to be used to read input from the user and output results to the user.
@@ -21,19 +21,7 @@ public class gradeKeeper {
                 ioInterface = new ConsoleIO();
 
     }
-    /**
-     * Create the term after reading the information to initialize it.
-     */
-    public void createTerm() {
-        String name = ioInterface.readString("Enter the name of the term: ");
 
-        createTermCommand createTerm= new createTermCommand();
-        createTerm.createTerm(name);
-        if (!createTerm.wasSuccessful()) {
-            ioInterface.outputString(createTerm.getErrorMessage() + "\n");
-            createTerm();
-        }
-    }
     /**
      * Run the hospital system: initialize, and then accept and carry out operations. Output the
      * patient and doctor dictionaries, and the ward when finishing.
@@ -44,15 +32,11 @@ public class gradeKeeper {
         while (opId != 0) {
             switch (opId) {
                 case 1:
-                    createTerm();
+                    addCourse();
                     break;
                 case 2:
-                    addCourse();
+                    displaySystemState();
                     break;
-                case 3:
-                    addCourse();
-                    break;
-
                 default:
                     ioInterface.outputString("Invalid int value; try again\n");
             }
@@ -76,8 +60,8 @@ public class gradeKeeper {
     }
     public void displaySystemState() {
         currentStateCommand state = new currentStateCommand();
-        state.findCurState();
-        ioInterface.outputString("The system is as follows: " + state.getCurState() + "\n");
+        state.traversal(courseTree.tree());
+        ioInterface.outputString( state.getCurState() + "\n");
     }
     public void addCourse() {
         String name = ioInterface.readString("Enter the name of the course: ");
@@ -95,7 +79,7 @@ public class gradeKeeper {
      */
     public String toString() {
         currentStateCommand state = new currentStateCommand();
-        state.findCurState();
+        state.traversal(courseTree.tree());
         return "The system is as follows: " + state.getCurState() + "\n";
     }
 

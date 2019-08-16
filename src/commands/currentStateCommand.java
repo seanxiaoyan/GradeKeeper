@@ -1,12 +1,11 @@
 package commands;
 
-import containers.courseSetAccess;
 
-import containers.termAccess;
-
-import java.util.Collection;
 import entities.Course;
-import entities.term;
+import containers.courseTree;
+
+import lib280.tree.AVLNode280;
+import lib280.tree.AVLTree280;
 
 /**
  * Command to obtain a String representation of the current state of the system. The current state
@@ -16,20 +15,25 @@ public class currentStateCommand extends commandStatus {
     /**
      * A string containing the current state of the system.
      */
-    private String curState;
+    private String curState ="\nThe course in the system are listed by grades\n";
 
     /**
      * Obtain the current state of the system and place the string in curState.
+     * the course are listed by grades from highest to lowest
      */
-    public void findCurState() {
-        curState = "\nThe course in the system are \n";
-        Collection<Course> course = courseSetAccess.dictionary().values();
-        for (Course p : course)
-            curState = curState + p;
-        curState = curState + "\nThe doctors in the system are \n";
 
-        curState = curState + "\nThe Term is " + termAccess.term();
+    public void traversal(AVLTree280<Course> T) {
+
+
+        if(!T.isEmpty()){
+            if(!T.rootRightSubtree().isEmpty()){
+            traversal(T.rootRightSubtree());}
+            curState+=(T.rootItem().getName()+" "+T.rootItem().getGrade()+"\n");
+            if(!T.rootLeftSubtree().isEmpty()){
+            traversal(T.rootLeftSubtree());}
+        }
         successful = true;
+
     }
 
     /**
@@ -42,6 +46,7 @@ public class currentStateCommand extends commandStatus {
         if (!wasSuccessful())
             throw new RuntimeException("The method findCurState() must be "
                     + "invoked before this method");
+
         return curState;
     }
 }
