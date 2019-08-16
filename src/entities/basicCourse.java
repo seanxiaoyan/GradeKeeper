@@ -1,12 +1,14 @@
 package entities;
 
+import lib280.exception.InvalidArgument280Exception;
+
 public class basicCourse{
     private String name;
     public basicCourse(String name) {
         if (name != null && !name.equals("")) {
             this.name = name;
         } else {
-            throw new RuntimeException("The name of a doctor cannot be null or empty.  It is " + name);
+            throw new InvalidArgument280Exception("The name of a course cannot be null or empty.  It is " + name);
         }
     }
     public String getName() {
