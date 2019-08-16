@@ -19,6 +19,7 @@ public class outputCourseCommand extends commandStatus{
             currentStateCommand state = new currentStateCommand();
             state.traversal(courseTree.tree());
             out.write(state.getCurState()+"\n");
+
             out.flush(); //
             out.close(); //
             successful=true;
@@ -27,6 +28,11 @@ public class outputCourseCommand extends commandStatus{
             successful=false;
             errorMessage= e.getMessage();
         }
+    }
+    public static void main(String[] args) {
+        //simple test
+        outputCourseCommand out = new outputCourseCommand();
+        out.outputCourse("C:\\Users\\51676\\GradeKeeper\\output.txt");
     }
 }
 

@@ -83,7 +83,7 @@ public class gradeKeeper {
         String answer = ioInterface.readString("Would you like output to default path? Y/N: ");
 
         if (answer.equals("Y")||answer.equals("y")){   //check the answer
-            outputCourse.outputCourse(".\\result\\output.txt");
+            outputCourse.outputCourse("C:\\Users\\51676\\GradeKeeper\\output.txt");
         }
         else if (answer.equals("N")||answer.equals("n")){
             String path = ioInterface.readString("Enter the path: ");
