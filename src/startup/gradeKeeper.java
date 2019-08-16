@@ -6,6 +6,7 @@ import commands.addCourseCommand;
 import commands.currentStateCommand;
 import commands.outputCourseCommand;
 import containers.courseTree;
+import commands.deleteCourseCommand;
 
 
 public class gradeKeeper {
@@ -31,7 +32,7 @@ public class gradeKeeper {
      */
     public int readOpId() {
         String[] taskChoices =
-                new String[] {"quit", "add a new course", "display current system state","outputCourse"};
+                new String[] {"quit", "add a new course", "delete a course","display current system state","outputCourse"};
 
         return ioInterface.readChoice(taskChoices);
     }
@@ -48,9 +49,12 @@ public class gradeKeeper {
                     addCourse();
                     break;
                 case 2:
-                    displaySystemState();
+                    deleteCourse();
                     break;
                 case 3:
+                    displaySystemState();
+                    break;
+                case 4:
                     outputCourse();
                     break;
                 default:
@@ -100,6 +104,17 @@ public class gradeKeeper {
         addCourse.addCourse(name, grade,credit);
         if (!addCourse.wasSuccessful())
             ioInterface.outputString(addCourse.getErrorMessage() + "\n");
+    }
+    public void deleteCourse(){
+        String name = ioInterface.readString("Enter the name of the course you wish to delete: ");
+        deleteCourseCommand delete= new deleteCourseCommand();
+        delete.deleteCourse(name);
+        if(!delete.wasSuccessful()){
+            ioInterface.outputString(delete.getErrorMessage() + "\n");
+        }
+        else{
+            ioInterface.outputString( "course "+name+" was successfully deleted! \n");
+        }
     }
     public void outputCourse() {
 
