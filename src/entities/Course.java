@@ -4,7 +4,7 @@ import lib280.exception.InvalidArgument280Exception;
 
 public class Course extends basicCourse implements Comparable<Course> {
     private int grade;
-    private int creditUnits;
+    private int credit;
     //constructor, input is an integer
 
     public Course(String name) {
@@ -22,14 +22,17 @@ public class Course extends basicCourse implements Comparable<Course> {
                     "and less or equal to 100.  This following grade is not acceptable " + g );
         }
     }
-    public void setCreditUnits(int g){
-        if (g==3||g==6) {
-            this.grade = g;
+
+    public int getCredit() {
+        return this.credit;
+    }
+    public void setCredit(int g){
+        if (g ==3 || g==6) {
+            this.credit = g;
         } else {
-            throw new InvalidArgument280Exception("The credit units entered is invalid: " + g );
+            throw new InvalidArgument280Exception("credit units invalid: " + g );
         }
     }
-
     public static void main(String[] args) {
         int numErrors = 0;
         Course g = new Course("CMPT214");
