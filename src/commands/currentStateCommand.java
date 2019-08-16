@@ -28,7 +28,7 @@ public class currentStateCommand extends commandStatus {
         if(!T.isEmpty()){
             if(!T.rootRightSubtree().isEmpty()){
             traversal(T.rootRightSubtree());}
-            curState+=(T.rootItem().getName()+" "+T.rootItem().getGrade()+"\n");
+            curState+=(T.rootItem().getName()+" "+T.rootItem().getGrade()+" "+T.rootItem().getCredit()+"\n");
             if(!T.rootLeftSubtree().isEmpty()){
             traversal(T.rootLeftSubtree());}
         }
