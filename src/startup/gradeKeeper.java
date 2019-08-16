@@ -29,7 +29,7 @@ public class gradeKeeper {
      */
     public int readOpId() {
         String[] taskChoices =
-                new String[] {"quit", "add a new course", "display current system state"};
+                new String[] {"quit", "add a new course", "display current system state","outputCourse"};
 
         return ioInterface.readChoice(taskChoices);
     }

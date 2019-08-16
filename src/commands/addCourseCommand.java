@@ -15,6 +15,7 @@ public class addCourseCommand extends commandStatus{
 
         try {
             courseTree.tree().insert(c);
+            successful=true;
         } catch (DuplicateItems280Exception e) {
             successful = false;
             errorMessage = "Cannot add this course since it is already in the system";
