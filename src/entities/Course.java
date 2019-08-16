@@ -1,6 +1,5 @@
 package entities;
 
-import lib280.exception.InvalidArgument280Exception;
 
 public class Course extends basicCourse implements Comparable<Course> {
     private int grade;
@@ -11,28 +10,14 @@ public class Course extends basicCourse implements Comparable<Course> {
         super(name);
     }
 
-    public int getGrade() {
-        return this.grade;
-    }
-    public void setGrade(int g){
-        if (g>0&&g<=100) {
-            this.grade = g;
-        } else {
-            throw new InvalidArgument280Exception("The grade cannot be null or empty, and the grade must be positive " +
-                    "and less or equal to 100.  This following grade is not acceptable " + g );
-        }
-    }
+    public int getGrade() { return this.grade; }
 
-    public int getCredit() {
-        return this.credit;
-    }
-    public void setCredit(int g){
-        if (g ==3 || g==6) {
-            this.credit = g;
-        } else {
-            throw new InvalidArgument280Exception("credit units invalid: " + g );
-        }
-    }
+    public void setGrade(int g){ this.grade = g; }
+
+    public int getCredit() { return this.credit; }
+
+    public void setCredit(int g) { this.credit = g; }
+
     public static void main(String[] args) {
         int numErrors = 0;
         Course g = new Course("CMPT214");
