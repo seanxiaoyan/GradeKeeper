@@ -69,9 +69,10 @@ public class gradeKeeper {
     }
     public void addCourse() {
         String name = ioInterface.readString("Enter the name of the course: ");
-        int grade = ioInterface.readInt("Enter the grade if this course: ");
+        int grade = ioInterface.readInt("Enter the grade of this course: ");
+        int credit = ioInterface.readInt("Enter the credit units of this course: ");
         addCourseCommand addCourse = new addCourseCommand();
-        addCourse.addCourse(name, grade);
+        addCourse.addCourse(name, grade,credit);
         if (!addCourse.wasSuccessful())
             ioInterface.outputString(addCourse.getErrorMessage() + "\n");
     }

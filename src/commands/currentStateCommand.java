@@ -15,7 +15,7 @@ public class currentStateCommand extends commandStatus {
     /**
      * A string containing the current state of the system.
      */
-    private String curState ="\nThe course in the system are listed by grades\n";
+    private String curState="";
 
     /**
      * Obtain the current state of the system and place the string in curState.
