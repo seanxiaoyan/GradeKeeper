@@ -2,10 +2,7 @@ package commands;
 
 
 import entities.Course;
-import containers.courseTree;
-
-import lib280.tree.AVLNode280;
-import lib280.tree.AVLTree280;
+import lib280.tree.OrderedSimpleTree280;
 
 /**
  * Command to obtain a String representation of the current state of the system. The current state
@@ -22,7 +19,7 @@ public class currentStateCommand extends commandStatus {
      * the course are listed by grades from highest to lowest
      */
 
-    public void traversal(AVLTree280<Course> T) {
+    public void traversal(OrderedSimpleTree280<Course> T) {
 
 
         if(!T.isEmpty()){

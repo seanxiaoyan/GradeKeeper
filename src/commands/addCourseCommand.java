@@ -2,7 +2,7 @@ package commands;
 import lib280.exception.*;
 import entities.Course;
 import containers.courseTree;
-import lib280.tree.AVLTree280;
+import lib280.tree.OrderedSimpleTree280;
 
 public class addCourseCommand extends commandStatus{
     private boolean isDuplicate=false;
@@ -38,7 +38,7 @@ public class addCourseCommand extends commandStatus{
      * @param T
      * @param n
      */
-    public void checkDupName(AVLTree280<Course> T,String n){
+    public void checkDupName(OrderedSimpleTree280<Course> T,String n){
         if(!T.isEmpty()) {
             if (!T.rootRightSubtree().isEmpty()) {
                 checkDupName(T.rootRightSubtree(), n);
