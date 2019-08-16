@@ -4,6 +4,7 @@ import userInterfaces.ConsoleIO;
 import userInterfaces.DialogIO;
 import commands.addCourseCommand;
 import commands.currentStateCommand;
+import commands.outputCourseCommand;
 import containers.courseTree;
 public class gradeKeeper {
     /**
@@ -21,7 +22,17 @@ public class gradeKeeper {
                 ioInterface = new ConsoleIO();
 
     }
+    /**
+     * Output the prompt that lists the possible tasks, and read the selection chosen by the user.
+     *
+     * @return the int corresponding to the task selected
+     */
+    public int readOpId() {
+        String[] taskChoices =
+                new String[] {"quit", "add a new course", "display current system state"};
 
+        return ioInterface.readChoice(taskChoices);
+    }
     /**
      * Run the hospital system: initialize, and then accept and carry out operations. Output the
      * patient and doctor dictionaries, and the ward when finishing.
@@ -37,6 +48,9 @@ public class gradeKeeper {
                 case 2:
                     displaySystemState();
                     break;
+                case 3:
+                    outputCourse();
+                    break;
                 default:
                     ioInterface.outputString("Invalid int value; try again\n");
             }
@@ -47,17 +61,7 @@ public class gradeKeeper {
         displaySystemState();
         System.exit(0);
     }
-    /**
-     * Output the prompt that lists the possible tasks, and read the selection chosen by the user.
-     *
-     * @return the int corresponding to the task selected
-     */
-    public int readOpId() {
-        String[] taskChoices =
-                new String[] {"quit", "add a new course", "display current system state"};
 
-        return ioInterface.readChoice(taskChoices);
-    }
     public void displaySystemState() {
         currentStateCommand state = new currentStateCommand();
         state.traversal(courseTree.tree());
@@ -70,6 +74,25 @@ public class gradeKeeper {
         addCourse.addCourse(name, grade);
         if (!addCourse.wasSuccessful())
             ioInterface.outputString(addCourse.getErrorMessage() + "\n");
+    }
+    public void outputCourse() {
+
+        outputCourseCommand outputCourse = new outputCourseCommand();//create new outputCourseCommand object
+
+        //decide target path. default is current path of GradeKeeper
+        String answer = ioInterface.readString("Would you like output to default path? Y/N: ");
+
+        if (answer.equals("Y")||answer.equals("y")){   //check the answer
+            outputCourse.outputCourse(".\\result\\output.txt");
+        }
+        else if (answer.equals("N")||answer.equals("n")){
+            String path = ioInterface.readString("Enter the path: ");
+            outputCourse.outputCourse(path);
+        }
+
+
+        if (!outputCourse.wasSuccessful())
+            ioInterface.outputString(outputCourse.getErrorMessage() + "\n");
     }
 
     /**
