@@ -62,6 +62,6 @@ public class readInputCourseCommand extends commandStatus {
     public static void main(String[] args) {
         //simple test
         readInputCourseCommand in = new readInputCourseCommand();
-        in.readinputCourse("C:\\Users\\51676\\GradeKeeper\\output.txt");
+        in.readinputCourse("output.txt");
     }
 }

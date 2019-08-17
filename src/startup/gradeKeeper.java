@@ -137,7 +137,7 @@ public class gradeKeeper {
         String answer = ioInterface.readString("Would you like output to default path? Y/N: ");
 
         if (answer.equals("Y")||answer.equals("y")){   //check the answer
-            outputCourse.outputCourse("..\\GradeKeeper\\output.txt");
+            outputCourse.outputCourse("output.txt");
             ioInterface.outputString("output done, please check the file output.txt\n");
             ask=false;
         }
@@ -160,7 +160,7 @@ public class gradeKeeper {
             String answer = ioInterface.readString("Would you like output to default path? Y/N: ");
 
             if (answer.equals("Y")||answer.equals("y")){   //check the answer
-                read.readinputCourse("..\\GradeKeeper\\output.txt");
+                read.readinputCourse("output.txt");
                 ask=false;
             }
             else if (answer.equals("N")||answer.equals("n")){
