@@ -89,7 +89,7 @@ public class gradeKeeper {
             grade = ioInterface.readInt("Enter the grade of this course: ");
             if(grade<0 || grade >100){
                 gradeCheck=false;
-                System.out.print("invalid grade"
+                ioInterface.outputString("invalid grade"
                     + "\nPlease try again: \n");}
             }
             while (!gradeCheck);
@@ -100,7 +100,7 @@ public class gradeKeeper {
             credit = ioInterface.readInt("Enter the credit units of this course: ");
             if(credit==3||credit==6){ creditCheck=true; }
             else{creditCheck=false;
-                System.out.print("invalid credit units, credit units has to be 3 or 6."
+                ioInterface.outputString("invalid credit units, credit units has to be 3 or 6."
                         + "\nPlease try again: \n");}
             }
             while (!creditCheck);
