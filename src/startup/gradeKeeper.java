@@ -172,6 +172,9 @@ public class gradeKeeper {
         if(!read.wasSuccessful()){
             ioInterface.outputString(read.getErrorMessage() + "\n");
         }
+        else{
+            ioInterface.outputString( "course were added successfully!\n");
+        }
     }
 
     /**
