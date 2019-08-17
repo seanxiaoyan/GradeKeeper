@@ -23,8 +23,7 @@ public class readInputCourseCommand extends commandStatus {
             while ((line = br.readLine()) != null) {
                 // one Line per time
                 //grab the following information in the line
-                int nameIndexBeg=0;int firstSpaceIndex=0;int secondSpaceIndex=0;
-                int spaces=3;
+                int firstSpaceIndex=0;int secondSpaceIndex=0;
                 for (int i=0;i<line.length();i++){
                     // since there are 2 spaces separate name, grade, and creditUnit
                         if(line.charAt(i)==' '){//through iteration, when hit the space char
@@ -57,7 +56,7 @@ public class readInputCourseCommand extends commandStatus {
                     System.out.println("Course "+name+" was successfully added");}
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("invalid input!");
         }
     }
     public static void main(String[] args) {
