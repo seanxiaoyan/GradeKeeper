@@ -34,6 +34,7 @@ public class readInputCourseCommand extends commandStatus {
                         }
                 }
                 //get name, grade and credit units of one course
+
                 String name=line.substring(0,firstSpaceIndex);
                 String gradeString = line.substring(firstSpaceIndex+1,secondSpaceIndex);
                 String creditString= line.substring(secondSpaceIndex+1,line.length());
@@ -65,6 +66,9 @@ public class readInputCourseCommand extends commandStatus {
             }
         } catch (IOException e) {
             System.out.println("invalid input!");
+        }catch (StringIndexOutOfBoundsException e){
+            successful=false;
+            errorMessage="invalid input";
         }
     }
     public static void main(String[] args) {
