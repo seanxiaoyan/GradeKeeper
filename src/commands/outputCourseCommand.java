@@ -18,7 +18,7 @@ public class outputCourseCommand extends commandStatus{
             BufferedWriter out = new BufferedWriter(new FileWriter(writename));
             currentStateCommand state = new currentStateCommand();
             state.traversal(courseTree.tree());
-            out.write(state.getCurState()+"\n");
+            out.write(state.getCurState());
 
             out.flush(); //
             out.close(); //

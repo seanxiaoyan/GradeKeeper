@@ -129,6 +129,7 @@ public class gradeKeeper {
 
         if (answer.equals("Y")||answer.equals("y")){   //check the answer
             outputCourse.outputCourse("C:\\Users\\51676\\GradeKeeper\\output.txt");
+            ioInterface.outputString("output done, please check the file output.txt\n");
         }
         else if (answer.equals("N")||answer.equals("n")){
             String path = ioInterface.readString("Enter the path: ");
