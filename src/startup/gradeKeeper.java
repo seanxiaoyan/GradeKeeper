@@ -59,9 +59,9 @@ public class gradeKeeper {
                 case 4:
                     outputCourse();
                     break;
-//                case 5:
-//                    readInput();
-//                    break;
+                case 5:
+                    readInput();
+                    break;
                 default:
                     ioInterface.outputString("Invalid int value; try again\n");
             }
@@ -130,28 +130,44 @@ public class gradeKeeper {
         outputCourseCommand outputCourse = new outputCourseCommand();//create new outputCourseCommand object
 
         //decide target path. default is current path of GradeKeeper
+        boolean ask =true;
+        do{
         String answer = ioInterface.readString("Would you like output to default path? Y/N: ");
 
         if (answer.equals("Y")||answer.equals("y")){   //check the answer
             outputCourse.outputCourse("..\\GradeKeeper\\output.txt");
             ioInterface.outputString("output done, please check the file output.txt\n");
+            ask=false;
         }
         else if (answer.equals("N")||answer.equals("n")){
             String path = ioInterface.readString("Enter the path: ");
             outputCourse.outputCourse(path);
-        }
+            ask=false;
+        }}
+        while(ask);
 
 
         if (!outputCourse.wasSuccessful())
             ioInterface.outputString(outputCourse.getErrorMessage() + "\n");
     }
-//    public void readInput(){
-//        String answer = ioInterface.readString("Would you like output to default path? Y/N: ");
-//
-//        if (answer.equals("Y")||answer.equals("y")){
-//        readInputCourseCommand readFile = new readInputCourseCommand();
-//        readFile.readinputCourse();
-//    }
+    public void readInput(){
+        readInputCourseCommand read = new readInputCourseCommand();
+        boolean ask =true;
+
+        do{
+            String answer = ioInterface.readString("Would you like output to default path? Y/N: ");
+
+            if (answer.equals("Y")||answer.equals("y")){   //check the answer
+                read.readinputCourse("..\\GradeKeeper\\output.txt");
+                ask=false;
+            }
+            else if (answer.equals("N")||answer.equals("n")){
+                String path = ioInterface.readString("Enter the path: ");
+                read.readinputCourse(path);
+                ask=false;
+            }}
+        while(ask);
+    }
 
     /**
      * Return a String that contains all the patients and doctors in the system.
