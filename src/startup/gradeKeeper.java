@@ -9,8 +9,6 @@ import containers.courseTree;
 import commands.deleteCourseCommand;
 import commands.readInputCourseCommand;
 
-import java.io.IOException;
-
 
 public class gradeKeeper {
     /**
@@ -22,7 +20,7 @@ public class gradeKeeper {
      */
     public void initialize() {
         ioInterface = new DialogIO();
-        String option = ioInterface.readString("Should dialog boxes be used for I/O? (Y/N) ");
+        String option = ioInterface.readString("Should dialog boxes be used for I/O? (Y for dialog boxes) ");
         if (option != null)
             if (option.charAt(0) == 'N' || option.charAt(0) == 'n')
                 ioInterface = new ConsoleIO();
@@ -35,7 +33,7 @@ public class gradeKeeper {
      */
     public int readOpId() {
         String[] taskChoices =
-                new String[] {"quit", "add a new course", "delete a course","display current system state","" +"save course",
+                new String[] {"quit", "add a new course", "delete a course","display all courses in the System","" +"save course",
                         "read course"};
 
         return ioInterface.readChoice(taskChoices);
@@ -56,7 +54,7 @@ public class gradeKeeper {
                     deleteCourse();
                     break;
                 case 3:
-                    displaySystemState();
+                    displayAllCourseInSys();
                     break;
                 case 4:
                     outputCourse();
@@ -71,14 +69,14 @@ public class gradeKeeper {
             opId = readOpId();
         }
 
-        displaySystemState();
+        ioInterface.outputString("GradeKeeper Terminated\nSee you again!");
         System.exit(0);
     }
 
-    public void displaySystemState() {
+    public void displayAllCourseInSys() {
         currentStateCommand state = new currentStateCommand();
         state.traversal(courseTree.tree());
-        ioInterface.outputString( state.getCurState() + "\n");
+        ioInterface.outputString( "Courses(name grade credit) are sorted by grade:\n"+state.getCurState() + "\n");
     }
     public void addCourse() {
         String name = ioInterface.readString("Enter the name of the course: ");
@@ -132,33 +130,47 @@ public class gradeKeeper {
         outputCourseCommand outputCourse = new outputCourseCommand();//create new outputCourseCommand object
 
         //decide target path. default is current path of GradeKeeper
+        String finalPath="";
         boolean ask =true;
         do{
-        String answer = ioInterface.readString("Would you like output to default path? Y/N: ");
-
+        String answer = ioInterface.readString("Would you like write to default path? Y/N: ");
+        if(answer!=null){
         if (answer.equals("Y")||answer.equals("y")){   //check the answer
             outputCourse.outputCourse("output.txt");
-            ioInterface.outputString("output done, please check the file output.txt\n");
+            finalPath="GradeKeeper\\output.txt";
             ask=false;
         }
         else if (answer.equals("N")||answer.equals("n")){
             String path = ioInterface.readString("Enter the path: ");
             outputCourse.outputCourse(path);
+            finalPath="GradeKeeper\\"+path;
+            ask=false;
+        }
+        else{ ioInterface.outputString("You entered invalid path, please try again"); }
+        }
+        else{
             ask=false;
         }}
+
         while(ask);
 
 
-        if (!outputCourse.wasSuccessful())
+        if (!outputCourse.wasSuccessful()){
             ioInterface.outputString(outputCourse.getErrorMessage() + "\n");
+        }
+        else{
+            ioInterface.outputString("courses are successfully saved to: "+finalPath);
+        }
+
     }
+
     public void readInput(){
         readInputCourseCommand read = new readInputCourseCommand();
         boolean ask =true;
 
         do{
-            String answer = ioInterface.readString("Would you like output to default path? Y/N: ");
-
+            String answer = ioInterface.readString("Would you like read from default path? Y/N: ");
+            if(answer!=null){
             if (answer.equals("Y")||answer.equals("y")){   //check the answer
                 read.readinputCourse("output.txt");
                 ask=false;
@@ -167,7 +179,13 @@ public class gradeKeeper {
                 String path = ioInterface.readString("Enter the path: ");
                 read.readinputCourse(path);
                 ask=false;
-            }}
+            }
+            else{ioInterface.outputString("You entered invalid path, please try again");}
+            }
+            else{
+                ask=false;
+            }
+        }
         while(ask);
         if(!read.wasSuccessful()){
             ioInterface.outputString(read.getErrorMessage() + "\n");

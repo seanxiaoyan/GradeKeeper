@@ -13,7 +13,7 @@ public class readInputCourseCommand extends commandStatus {
      * @param givenPath the path of the file
      */
     public void readinputCourse(String givenPath) {
-        /* 读入TXT文件 */
+        /* read text file */
 
         try {
             FileReader reader = new FileReader(givenPath);

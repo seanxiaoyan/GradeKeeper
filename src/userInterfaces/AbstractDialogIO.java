@@ -17,8 +17,8 @@ public abstract class AbstractDialogIO implements InputOutputInterface {
      */
     public int readChoice(String[] options) {
         String selection = (String) JOptionPane.showInputDialog(null, // parent component
-                "Please select an option ", // prompt
-                "Choice Selection", // window title
+                "Welcome to GradeKeeper \nPlease select an option ", // prompt
+                "GradeKeeper", // window title
                 JOptionPane.QUESTION_MESSAGE, // type of message
                 null, // icon displayed
                 options, // choices for the Combo box
