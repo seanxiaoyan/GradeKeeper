@@ -9,32 +9,19 @@ public class deleteCourseCommand extends commandStatus {
      * delete course in the data structure specified by course name
      * @param name course name
      */
-    public void deleteCourse (String name){
-        searchByName(courseTree.tree(),name);
-        if (!successful){
-            errorMessage="course not found, the course is not in the system";
+    public void deleteCourse (String name,int grade,int creditUnints){
+        Course cToDelete = new Course(name);
+        cToDelete.setGrade(grade);
+        cToDelete.setCredit(creditUnints);
+        if(courseTree.tree().has(cToDelete)){
+            courseTree.tree().search(cToDelete);
+            courseTree.tree().deleteItem();
+            successful=true;
+        }
+        else{
+            successful=false;
+            errorMessage="course not found, deletion failed";
         }
     }
 
-    /**
-     *
-     * @param T binary search tree
-     * @param n name of course
-     */
-    public void searchByName(OrderedSimpleTree280<Course> T, String n){
-        if(T.isEmpty()){
-            successful=false;
-        }
-        else{
-        if (!T.rootRightSubtree().isEmpty()) {
-            searchByName(T.rootRightSubtree(), n);
-        }
-        if (T.rootItem().getName().equals(n)) {
-            T.deleteItem();
-            successful=true;
-        }
-        if (!T.rootLeftSubtree().isEmpty()) {
-            searchByName(T.rootLeftSubtree(), n);
-        }
-    }}
 }

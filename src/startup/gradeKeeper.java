@@ -106,9 +106,13 @@ public class gradeKeeper {
             ioInterface.outputString(addCourse.getErrorMessage() + "\n");
     }
     public void deleteCourse(){
+        //read input
         String name = ioInterface.readString("Enter the name of the course you wish to delete: ");
+        int grade =ioInterface.readInt("Enter the grade of this course: ");
+        int credit = ioInterface.readInt("Enter the credit units of this course: ");
         deleteCourseCommand delete= new deleteCourseCommand();
-        delete.deleteCourse(name);
+        //delete
+        delete.deleteCourse(name,grade,credit);
         if(!delete.wasSuccessful()){
             ioInterface.outputString(delete.getErrorMessage() + "\n");
         }

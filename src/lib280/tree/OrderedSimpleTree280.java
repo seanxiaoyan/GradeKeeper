@@ -425,55 +425,7 @@ public class OrderedSimpleTree280<I extends Comparable<? super I>> extends Linke
 		T.insert(17);
 		T.insert(66);
 		T.insert(42);
-		
-		System.out.println(T.toStringByLevel());
-		
-		T.search(50);
-		if(T.itemExists()) {
-			T.deleteItem();
-			System.out.println("\n\nAfter deleting 50:\n" + T);
-		}
-		else System.out.println("\n\nThere was no element 50 in the lib280.tree to delete.");
 
-		// Test to make sure that has() always starts at the root.
-		T.search(42);
-		if(!T.itemExists())
-			System.out.println("\n\n Error: should have found 42 with search() but didn't.");
-
-		if(T.item() != 42)
-			System.out.println("\n\n Error: current item should be 42 but it isn't.");
-
-
-		T.resumeSearches();
-		if( !T.has(42) ) {
-
-			System.out.println("\n\n Error: tree has 42, but has() says it doesn't.");
-		}
-		T.restartSearches();
-
-
-
-		T.search(42);
-		if(T.itemExists()) {
-			T.deleteItem();
-			System.out.println("\n\nAfter deleting 42:\n" + T);
-		}
-		else System.out.println("\n\nThere was no element 42 in the lib280.tree to delete.");
-
-
-		T.search(16);
-		if(T.itemExists()) {
-			T.deleteItem();
-			System.out.println("\n\nAfter deleting 16:\n" + T);
-		}
-		else System.out.println("\n\nThere was no element 16 in the lib280.tree to delete.");
-		
-		T.search(99);
-		if(T.itemExists()) {
-			T.deleteItem();
-			System.out.println("\n\nAfter deleting 99:\n" + T);
-		}
-		else System.out.println("\n\nAs expected, there was no element 99 in the lib280.tree to delete.");
 
 	}
 	
