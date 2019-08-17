@@ -9,7 +9,7 @@ public class commandStatus {
         public boolean successful = false;
 
         /** If the command was not successful, an appropriate error message. */
-        protected String errorMessage;
+        protected String errorMessage="";
 
         /**
          * Was the last execution of this command successful?

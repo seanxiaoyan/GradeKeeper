@@ -7,6 +7,7 @@ import commands.currentStateCommand;
 import commands.outputCourseCommand;
 import containers.courseTree;
 import commands.deleteCourseCommand;
+import commands.readInputCourseCommand;
 
 
 public class gradeKeeper {
@@ -32,7 +33,8 @@ public class gradeKeeper {
      */
     public int readOpId() {
         String[] taskChoices =
-                new String[] {"quit", "add a new course", "delete a course","display current system state","outputCourse"};
+                new String[] {"quit", "add a new course", "delete a course","display current system state","" +"save course",
+                        "read course"};
 
         return ioInterface.readChoice(taskChoices);
     }
@@ -57,6 +59,9 @@ public class gradeKeeper {
                 case 4:
                     outputCourse();
                     break;
+//                case 5:
+//                    readInput();
+//                    break;
                 default:
                     ioInterface.outputString("Invalid int value; try again\n");
             }
@@ -128,7 +133,7 @@ public class gradeKeeper {
         String answer = ioInterface.readString("Would you like output to default path? Y/N: ");
 
         if (answer.equals("Y")||answer.equals("y")){   //check the answer
-            outputCourse.outputCourse("C:\\Users\\51676\\GradeKeeper\\output.txt");
+            outputCourse.outputCourse("..\\GradeKeeper\\output.txt");
             ioInterface.outputString("output done, please check the file output.txt\n");
         }
         else if (answer.equals("N")||answer.equals("n")){
@@ -140,6 +145,13 @@ public class gradeKeeper {
         if (!outputCourse.wasSuccessful())
             ioInterface.outputString(outputCourse.getErrorMessage() + "\n");
     }
+//    public void readInput(){
+//        String answer = ioInterface.readString("Would you like output to default path? Y/N: ");
+//
+//        if (answer.equals("Y")||answer.equals("y")){
+//        readInputCourseCommand readFile = new readInputCourseCommand();
+//        readFile.readinputCourse();
+//    }
 
     /**
      * Return a String that contains all the patients and doctors in the system.
