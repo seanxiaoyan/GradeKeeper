@@ -169,6 +169,9 @@ public class gradeKeeper {
                 ask=false;
             }}
         while(ask);
+        if(!read.wasSuccessful()){
+            ioInterface.outputString(read.getErrorMessage() + "\n");
+        }
     }
 
     /**

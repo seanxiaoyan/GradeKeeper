@@ -53,7 +53,15 @@ public class readInputCourseCommand extends commandStatus {
                 else{
                     addCourseCommand addCourse = new addCourseCommand();
                     addCourse.addCourse(name, grade,credit);
-                    System.out.println("Course "+name+" was successfully added");}
+                    if(!addCourse.wasSuccessful()){
+                        errorMessage=addCourse.getErrorMessage();
+                        successful=false;
+                    }
+                    else {
+                        successful=true;
+                        System.out.println("Course "+name+" was successfully added");
+                    }
+                    }
             }
         } catch (IOException e) {
             System.out.println("invalid input!");

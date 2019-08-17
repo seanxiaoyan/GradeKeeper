@@ -21,7 +21,7 @@ public class addCourseCommand extends commandStatus{
         if(this.isDuplicate){//isDuplicate is set to be True, means that the course is already in the system
             this.isDuplicate=false;// set isDuplicate back to false
             successful = false;// false to add course since the course needed to add is already in the system
-            errorMessage = "Cannot add this course since it is already in the system";
+            errorMessage = "Cannot add this course: "+name+" ,since it is already in the system";
         }
         else{// course is not yet in the system
         courseTree.tree().insert(c);//insert the course into the tree
