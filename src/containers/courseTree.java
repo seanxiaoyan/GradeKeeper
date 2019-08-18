@@ -11,13 +11,13 @@ public class courseTree {
     private static OrderedSimpleTree280<Course> tree;
 
     /**
-     * Return the dictionary that maps names to doctors.
+     * Return the binary search tree that contains course objects
      *
-     * @return the dictionary that maps names to doctors
+     * @return the binary search tree
      */
     public static OrderedSimpleTree280<Course> tree() {
         if (tree == null) {
-            /* Create the initial dictionary. */
+            /* Create the initial tree. */
             tree = new OrderedSimpleTree280<>();
         }
         return tree;

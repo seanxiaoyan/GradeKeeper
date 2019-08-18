@@ -3,7 +3,7 @@ package entities;
 import lib280.exception.InvalidArgument280Exception;
 
 public class basicCourse{
-    private String name;
+    private String name; // name of the course
     public basicCourse(String name) {
         if (name != null && !name.equals("")) {
             this.name = name;

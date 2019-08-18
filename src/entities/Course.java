@@ -1,9 +1,11 @@
 package entities;
 
-
+/**
+ * Course object which is comparable
+ */
 public class Course extends basicCourse implements Comparable<Course> {
-    private int grade;
-    private int credit;
+    private int grade; // the grade of the course
+    private int credit; // the cresit units of the course
     //constructor, input is an integer
 
     public Course(String name) {

@@ -10,23 +10,38 @@ import commands.deleteCourseCommand;
 import commands.readInputCourseCommand;
 import commands.weightedAverageCommand;
 
-
+/**
+ * This is the main class for the Grade Keeper Application
+ */
 public class gradeKeeper {
     /**
      * The interface to be used to read input from the user and output results to the user.
      */
     private InputOutputInterface ioInterface;
     /**
-     * Initialize the system by creating the dictionaries, ward, and interface for I/O.
+     * Initialize the system by creating the interface for I/O.
      */
     public void initialize() {
-        ioInterface = new DialogIO();
-        String option = ioInterface.readString("Should dialog boxes be used for I/O? (Y for dialog boxes) ");
-        if (option != null)
-            if (option.charAt(0) == 'N' || option.charAt(0) == 'n')
-                ioInterface = new ConsoleIO();
+        boolean ask = true;
+        do{
+            try{
+                ioInterface = new DialogIO();
+                String option = ioInterface.readString("Should dialog boxes be used for I/O?\n " +
+                        "(Enter Y for dialog boxes, others for console IO) ");
+                if (option != null){
+                    if (option.charAt(0) == 'N' || option.charAt(0) == 'n') {
+                        ioInterface = new ConsoleIO();
+                        ask=false;
+                    }
+                }
+                else{System.exit(0);}
+            }
+            catch (StringIndexOutOfBoundsException e){
+                ioInterface.outputString("Invalid input");
+            }
+        }
+        while (ask);}
 
-    }
     /**
      * Output the prompt that lists the possible tasks, and read the selection chosen by the user.
      *
