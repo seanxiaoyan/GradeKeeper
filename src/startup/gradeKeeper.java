@@ -8,6 +8,7 @@ import commands.outputCourseCommand;
 import containers.courseTree;
 import commands.deleteCourseCommand;
 import commands.readInputCourseCommand;
+import commands.weightedAverageCommand;
 
 
 public class gradeKeeper {
@@ -33,8 +34,9 @@ public class gradeKeeper {
      */
     public int readOpId() {
         String[] taskChoices =
-                new String[] {"quit", "add a new course", "delete a course","display all courses in the System","" +"save course",
-                        "read course"};
+                new String[] {"Quit", "Add a new course", "Delete a course","Display all courses in the System","Get " +
+                        "weighted average","" +"Save current status (all courses) to a file",
+                        "Read courses from a file"};
 
         return ioInterface.readChoice(taskChoices);
     }
@@ -57,9 +59,12 @@ public class gradeKeeper {
                     displayAllCourseInSys();
                     break;
                 case 4:
-                    outputCourse();
+                    getWeightedAverage();
                     break;
                 case 5:
+                    outputCourse();
+                    break;
+                case 6:
                     readInput();
                     break;
                 default:
@@ -123,6 +128,15 @@ public class gradeKeeper {
         }
         else{
             ioInterface.outputString( "course "+name+" was successfully deleted! \n");
+        }
+    }
+    public void getWeightedAverage(){
+        weightedAverageCommand weightedAverage= new weightedAverageCommand();
+        weightedAverage.getAverage(courseTree.tree());
+        if(weightedAverage.wasSuccessful()){
+            ioInterface.outputString("The weighted average is:  "+weightedAverage.weightAvg+"%");}
+        else{
+            ioInterface.outputString(weightedAverage.getErrorMessage());
         }
     }
     public void outputCourse() {

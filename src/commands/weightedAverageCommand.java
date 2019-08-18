@@ -6,8 +6,9 @@ import lib280.tree.OrderedSimpleTree280;
  * calculate current weighted average
  */
 public class weightedAverageCommand extends commandStatus{
-    private double totalWeightedMarks=0;
-    private double totalCreditUnits=0;
+    private double totalWeightedMarks;
+    private double totalCreditUnits;
+    public double weightAvg;
 
     /**
      * In-order traversal to get total weighted marks
@@ -24,9 +25,15 @@ public class weightedAverageCommand extends commandStatus{
         }
         successful = true;
     }
-    public double getAverage(OrderedSimpleTree280<Course>T){
+    public void getAverage(OrderedSimpleTree280<Course>T){
         this.traversal(T);
-        return this.totalWeightedMarks/this.totalCreditUnits;
+        if(this.totalCreditUnits==0){
+            successful=false;
+            errorMessage="Cannot get average since there is no course in the system yet";
+        }
+        else{
+            successful=true;
+            weightAvg= this.totalWeightedMarks/this.totalCreditUnits;}
     }
 
 
