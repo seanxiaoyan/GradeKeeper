@@ -1,6 +1,7 @@
 package commands;
 import entities.Course;
 import lib280.tree.OrderedSimpleTree280;
+import java.math.*;
 
 /**
  * calculate current weighted average
@@ -33,7 +34,21 @@ public class weightedAverageCommand extends commandStatus{
         }
         else{
             successful=true;
-            weightAvg= this.totalWeightedMarks/this.totalCreditUnits;}
+            weightAvg= round(this.totalWeightedMarks/this.totalCreditUnits,2);}
+    }
+
+    /**
+     * convert a double value to specific decimal places
+     * @param value value to be converted
+     * @param places desired decimal places.
+     * @return a double value rounded to desired decimal places
+     */
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = BigDecimal.valueOf(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
 
