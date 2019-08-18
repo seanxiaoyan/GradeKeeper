@@ -1,54 +1,38 @@
 package commands;
-import lib280.exception.*;
 import entities.Course;
 import containers.courseTree;
 import lib280.tree.OrderedSimpleTree280;
+import lib280.exception.*;
 
 public class addCourseCommand extends commandStatus{
-    private boolean isDuplicate=false;
     /**
-     * Create a course with the specified name, and add the course into the system.
-     *
-     * @param name: course name
+     * private boolean field, used to check if the course already exist.
+     */
+    private boolean isDuplicate=false;
+
+
+    /**
+     * Method addCourse: Create a course with its name. grade and credit units. Then add the course into the system.
+     * @param name: name of course
+     * @param grade: grade of course
+     * @param credit: credit of course
      */
     public void addCourse (String name,int grade,int credit){
         try {
-        Course c = new Course(name);
+        Course c = new Course(name); // create a new course object
         c.setGrade(grade);
         c.setCredit(credit);
 
-        checkDupName(courseTree.tree(),name);
-        if(this.isDuplicate){//isDuplicate is set to be True, means that the course is already in the system
-            this.isDuplicate=false;// set isDuplicate back to false
-            successful = false;// false to add course since the course needed to add is already in the system
+        if(courseTree.tree().has(c)){//check if the course is already in the system
+            successful = false;// false to add course, command was not successful
             errorMessage = "Cannot add this course: "+name+" ,since it is already in the system";
         }
         else{// course is not yet in the system
         courseTree.tree().insert(c);//insert the course into the tree
-        successful=true;}
+        successful=true;} // command was successful
         }
-        catch (InvalidArgument280Exception e){successful=false;
+        catch (InvalidArgument280Exception e){successful=false; // command was not successful
         errorMessage=e.getMessage();}
-
-
     }
 
-    /**
-     * check if the course is already in the system
-     * @param T
-     * @param n
-     */
-    public void checkDupName(OrderedSimpleTree280<Course> T,String n){
-        if(!T.isEmpty()) {
-            if (!T.rootRightSubtree().isEmpty()) {
-                checkDupName(T.rootRightSubtree(), n);
-            }
-            if (T.rootItem().getName().equals(n)) {
-                this.isDuplicate = true;
-            }
-            if (!T.rootLeftSubtree().isEmpty()) {
-                checkDupName(T.rootLeftSubtree(), n);
-            }
-        }
-    }
 }

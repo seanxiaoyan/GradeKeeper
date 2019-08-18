@@ -1,7 +1,6 @@
 package commands;
 import entities.Course;
 import containers.courseTree;
-import lib280.tree.OrderedSimpleTree280;
 
 public class deleteCourseCommand extends commandStatus {
 

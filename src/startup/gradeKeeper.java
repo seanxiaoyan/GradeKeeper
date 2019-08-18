@@ -78,10 +78,17 @@ public class gradeKeeper {
         System.exit(0);
     }
 
+    /**
+     * list all courses in the system
+     */
     public void displayAllCourseInSys() {
         currentStateCommand state = new currentStateCommand();
         state.traversal(courseTree.tree());
-        ioInterface.outputString( "Courses(name grade credit) are sorted by grade:\n"+state.getCurState() + "\n");
+        if(state.wasSuccessful()){
+        ioInterface.outputString( "Courses(name grade credit) are sorted by grade:\n"+state.getCurState() + "\n");}
+        else{
+            ioInterface.outputString(state.getErrorMessage());
+        }
     }
     public void addCourse() {
         String name = ioInterface.readString("Enter the name of the course: ");

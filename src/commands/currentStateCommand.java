@@ -1,6 +1,4 @@
 package commands;
-
-
 import entities.Course;
 import lib280.tree.OrderedSimpleTree280;
 
@@ -15,22 +13,23 @@ public class currentStateCommand extends commandStatus {
     private String curState="";
 
     /**
-     * Obtain the current state of the system and place the string in curState.
-     * the course are listed by grades from highest to lowest
+     * the revers of in-order traversal to obtain all course objects stored in the tree, from highest grade to lowest grade.
+     * @param T Binary search tree that contains course objects
      */
-
     public void traversal(OrderedSimpleTree280<Course> T) {
 
-
-        if(!T.isEmpty()){
+        if(!T.isEmpty()){ // check if the tree is empty first.
             if(!T.rootRightSubtree().isEmpty()){
             traversal(T.rootRightSubtree());}
             curState+=(T.rootItem().getName()+" "+T.rootItem().getGrade()+" "+T.rootItem().getCredit()+"\n");
             if(!T.rootLeftSubtree().isEmpty()){
             traversal(T.rootLeftSubtree());}
+            successful = true;
         }
-        successful = true;
-
+        else{
+            successful=false;// tree is empty, cannot obtain course
+            errorMessage="There is no course in the system"; // give message
+        }
     }
 
     /**
@@ -40,10 +39,6 @@ public class currentStateCommand extends commandStatus {
      * @return a string containing the state of the system
      */
     public String getCurState() {
-        if (!wasSuccessful())
-            throw new RuntimeException("The method findCurState() must be "
-                    + "invoked before this method");
-
         return curState;
     }
 }
