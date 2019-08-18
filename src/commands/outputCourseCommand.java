@@ -1,27 +1,26 @@
 package commands;
 import containers.courseTree;
-
 import java.io.File;
-
 import java.io.BufferedWriter;
-
 import java.io.FileWriter;
 
 /**
- *  write output to file
+ * obtain all the courses in the system and write them to a text file
  */
 public class outputCourseCommand extends commandStatus{
     public void outputCourse (String targetPath){
         try { // try and catch
-            File writename = new File(targetPath); // relative path, create new file if output.txt not exist
+            File writename = new File(targetPath); // relative path
             writename.createNewFile(); // create new file
             BufferedWriter out = new BufferedWriter(new FileWriter(writename));
             currentStateCommand state = new currentStateCommand();
-            state.traversal(courseTree.tree());
-            out.write(state.getCurState());
 
-            out.flush(); //
-            out.close(); //
+            //obtain the string that is going to be written into the file
+            state.traversal(courseTree.tree());
+            out.write(state.getCurState()); // here, the string is the result of .getCurState()
+
+            out.flush();
+            out.close();
             successful=true;
 
         } catch (Exception e) {

@@ -79,7 +79,7 @@ public class gradeKeeper {
     }
 
     /**
-     * list all courses in the system
+     * list all courses in the system. When there is no course yet, display message
      */
     public void displayAllCourseInSys() {
         currentStateCommand state = new currentStateCommand();

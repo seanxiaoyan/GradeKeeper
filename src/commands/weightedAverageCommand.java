@@ -7,38 +7,46 @@ import java.math.*;
  * calculate current weighted average
  */
 public class weightedAverageCommand extends commandStatus{
-    private double totalWeightedMarks;
-    private double totalCreditUnits;
-    public double weightAvg;
+    private double totalWeightedMarks; // total weighted marks used for division
+    private double totalCreditUnits; // total credit units used for division
+    public double weightAvg; // weighted average, the result of division
 
     /**
-     * In-order traversal to get total weighted marks
+     * In-order traversal to get total weighted marks and total credit units
      * @param T binary search tree that stores course object
      */
-    public void traversal(OrderedSimpleTree280<Course> T){
+    public void obtainTotal(OrderedSimpleTree280<Course> T){
+
+        // apply in-order obtainTotal to obtain the total weighted marks and the total credit units
+
         if(!T.isEmpty()){
             if(!T.rootLeftSubtree().isEmpty()){
-                traversal(T.rootLeftSubtree());}
+                obtainTotal(T.rootLeftSubtree());}
             this.totalWeightedMarks+=T.rootItem().getGrade()*T.rootItem().getCredit();//weightedMarks = grade * credit Units
             this.totalCreditUnits+=T.rootItem().getCredit();
             if(!T.rootRightSubtree().isEmpty()){
-                traversal(T.rootRightSubtree());}
-        }
-        successful = true;
-    }
-    public void getAverage(OrderedSimpleTree280<Course>T){
-        this.traversal(T);
-        if(this.totalCreditUnits==0){
-            successful=false;
-            errorMessage="Cannot get average since there is no course in the system yet";
+                obtainTotal(T.rootRightSubtree());
+            }
+            successful = true;
         }
         else{
-            successful=true;
+            successful=false;
+            errorMessage="Cannot obtain weighted average since there is no course in the system";
+        }
+    }
+
+    /**
+     * Calculate weighted average and round the result to 2 decimal places
+     * @param T Binary search tree stores the course objects
+     */
+    public void getAverage(OrderedSimpleTree280<Course>T){
+        this.obtainTotal(T); // obtain total weighted average and total weighted marks
+        if(successful){ //
             weightAvg= round(this.totalWeightedMarks/this.totalCreditUnits,2);}
     }
 
     /**
-     * convert a double value to specific decimal places
+     * Method to convert a double value to specific decimal places
      * @param value value to be converted
      * @param places desired decimal places.
      * @return a double value rounded to desired decimal places

@@ -13,7 +13,7 @@ public class currentStateCommand extends commandStatus {
     private String curState="";
 
     /**
-     * the revers of in-order traversal to obtain all course objects stored in the tree, from highest grade to lowest grade.
+     * the revers of in-order obtainTotal to obtain all course objects stored in the tree, from highest grade to lowest grade.
      * @param T Binary search tree that contains course objects
      */
     public void traversal(OrderedSimpleTree280<Course> T) {
