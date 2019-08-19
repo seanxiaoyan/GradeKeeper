@@ -63,7 +63,8 @@ public class readInputCourseCommand extends commandStatus {
                     }
             }
         } catch (IOException e) {
-            System.out.println("invalid input!");
+            successful=false;
+            errorMessage=e.getMessage();
         } catch (StringIndexOutOfBoundsException e){
             successful=false;
             errorMessage="invalid input";
