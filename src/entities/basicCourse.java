@@ -8,7 +8,7 @@ public class basicCourse{
         if (name != null && !name.equals("")) {
             this.name = name;
         } else {
-            throw new InvalidArgument280Exception("The name of a course cannot be null or empty.  It is " + name);
+            throw new InvalidArgument280Exception("The name of a course cannot be null or empty.");
         }
     }
     public String getName() {

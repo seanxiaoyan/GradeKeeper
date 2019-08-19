@@ -1,6 +1,7 @@
 package commands;
 import entities.Course;
 import containers.courseTree;
+import lib280.exception.InvalidArgument280Exception;
 
 public class deleteCourseCommand extends commandStatus {
 
@@ -12,6 +13,7 @@ public class deleteCourseCommand extends commandStatus {
      */
     public void deleteCourse (String name,int grade,int creditUnints){
         // create a new course object
+        try{
         Course cToDelete = new Course(name);
         cToDelete.setGrade(grade);
         cToDelete.setCredit(creditUnints);
@@ -25,6 +27,10 @@ public class deleteCourseCommand extends commandStatus {
         else{ // if there is not, give message and set boolean successful to false
             successful=false;
             errorMessage="course not found, deletion failed";
+        }
+        }catch (InvalidArgument280Exception e){
+            successful=false;
+            errorMessage=e.getMessage();
         }
     }
 
