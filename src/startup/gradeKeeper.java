@@ -27,10 +27,13 @@ public class gradeKeeper {
             try{
                 ioInterface = new DialogIO();
                 String option = ioInterface.readString("Should dialog boxes be used for I/O?\n " +
-                        "(Enter Y for dialog boxes, others for console IO) ");
+                        "(Enter Y for dialog boxes, N for console IO) ");
                 if (option != null){
                     if (option.charAt(0) == 'N' || option.charAt(0) == 'n') {
                         ioInterface = new ConsoleIO();
+                        ask=false;
+                    }
+                    else if(option.charAt(0)=='Y' || option.charAt(0)=='y'){
                         ask=false;
                     }
                 }
