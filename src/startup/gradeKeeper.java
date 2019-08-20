@@ -182,7 +182,7 @@ public class gradeKeeper {
         else if (answer.equals("N")||answer.equals("n")){
             String path = ioInterface.readString("Enter the path: ");
             outputCourse.outputCourse(path);
-            finalPath="GradeKeeper\\"+path;
+            finalPath=path;
             ask=false;
         }
         else{ ioInterface.outputString("You entered invalid path, please try again"); }
