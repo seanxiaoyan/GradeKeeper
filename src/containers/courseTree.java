@@ -22,4 +22,7 @@ public class courseTree {
         }
         return tree;
     }
+    public static void clear(){
+        tree=null;
+    }
 }

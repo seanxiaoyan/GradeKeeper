@@ -182,7 +182,7 @@ public class gradeKeeper {
         else if (answer.equals("N")||answer.equals("n")){
             String path = ioInterface.readString("Enter the path: ");
             outputCourse.outputCourse(path);
-            finalPath="GradeKeeper\\"+path;
+            finalPath=path;
             ask=false;
         }
         else{ ioInterface.outputString("You entered invalid path, please try again"); }
@@ -206,6 +206,16 @@ public class gradeKeeper {
     public void readInput(){
         readInputCourseCommand read = new readInputCourseCommand();
         boolean ask =true;
+        //ask if user want to start from new or add to existing
+
+
+        String newOrExisting = ioInterface.readString("Would you like add courses to existing or start from new?\n" +
+                "(Y for start from new and other answers for adding to existing: ");
+        if(newOrExisting!=null){
+            if(newOrExisting.equals("Y")||newOrExisting.equals("y")){
+                courseTree.clear();
+            }
+        }
 
         do{
             String answer = ioInterface.readString("Would you like read from default path? Y/N: ");
