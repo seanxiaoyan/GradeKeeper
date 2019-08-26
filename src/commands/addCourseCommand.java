@@ -23,9 +23,15 @@ public class addCourseCommand extends commandStatus{
         c.setGrade(grade);
         c.setCredit(credit);
 
-        if(courseTree.tree().has(c)){//check if the course is already in the system
-            successful = false;// false to add course, command was not successful
-            errorMessage = "Cannot add this course: "+name+" ,since it is already in the system";
+        //since .has() return true as long as the grade is the same, we need double check
+        if(courseTree.tree().has(c)){//check if there is a class with the same grade\
+            courseTree.tree().search(c);//move the cursor to that item position
+            if(courseTree.tree().item().getName().equals(name)){// if the class' name is also the same
+                successful = false;// false to add course, command was not successful
+                errorMessage = "Cannot add this course: "+name+" ,since it is already in the system";
+            }
+            courseTree.tree().insert(c);//insert the course into the tree
+            successful=true; // command was successful
         }
         else{// course is not yet in the system
         courseTree.tree().insert(c);//insert the course into the tree
