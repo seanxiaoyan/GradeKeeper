@@ -176,11 +176,11 @@ public class gradeKeeper {
         if(answer!=null){
         if (answer.equals("Y")||answer.equals("y")){   //check the answer
             outputCourse.outputCourse("output.txt");
-            finalPath="GradeKeeper\\output.txt";
+            finalPath="\\output.txt";
             ask=false;
         }
         else if (answer.equals("N")||answer.equals("n")){
-            String path = ioInterface.readString("Enter the path: ");
+            String path = ioInterface.readString("Enter the path of the destination file: ");
             outputCourse.outputCourse(path);
             finalPath=path;
             ask=false;
@@ -198,7 +198,10 @@ public class gradeKeeper {
             ioInterface.outputString(outputCourse.getErrorMessage() + "\n");
         }
         else{
-            ioInterface.outputString("courses are successfully saved to: "+finalPath);
+            ioInterface.outputString("courses are successfully saved to the destination file\n" +
+                    "By default:\n" +
+                    "   The directory is the directory of this application+\n" +
+                    "   and the file name is called output.txt");
         }
 
     }

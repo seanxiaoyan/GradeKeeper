@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="GradeKeeper:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/GradeKeeper_jar</output-path>
-    <root id="archive" name="GradeKeeper.jar">
-      <element id="module-output" name="GradeKeeper" />
-      <element id="module-output" name="lib280-asn4" />
-    </root>
-  </artifact>
-</component>
