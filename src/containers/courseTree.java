@@ -7,7 +7,6 @@ public class courseTree {
      */
     private courseTree() {}
 
-    /** The dictionary for doctors. */
     private static OrderedSimpleTree280<Course> tree;
 
     /**
